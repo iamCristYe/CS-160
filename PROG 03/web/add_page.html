@@ -31,7 +31,7 @@
         $.ajax({
           url: 'https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes',
           type: 'POST',
-          data: JSON.stringify({ "TableName": "Recipes", "Item": { "Recipe name": $('#name').val(), "Ingredients": $(ingredients).val(), "Directions": $(directions).val(), "Image": $(image).val() } }),
+          data: JSON.stringify({ "TableName": "Recipes", "Item": { "Recipe name": $('#name').val(), "Ingredients": $(ingredients).val().replace(/\n/g, "\\"), "Directions": $(directions).val().replace(/\n/g, "\\"), "Image": $(image).val() } }),
           success: function (data) {
             alert("Success");
           },
