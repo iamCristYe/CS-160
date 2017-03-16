@@ -73,15 +73,15 @@ SearchIntent Let us make {Recipe}
 SearchIntent Let us prepare a {Recipe}
 SearchIntent Let us prepare an {Recipe}
 SearchIntent Let us prepare {Recipe}
-SearchIntent Let’s cook a {Recipe}
-SearchIntent Let’s cook an {Recipe}
-SearchIntent Let’s cook {Recipe}
-SearchIntent Let’s make a {Recipe}
-SearchIntent Let’s make an {Recipe}
-SearchIntent Let’s make {Recipe}
-SearchIntent Let’s prepare a {Recipe}
-SearchIntent Let’s prepare an {Recipe}
-SearchIntent Let’s prepare {Recipe}
+SearchIntent Lets cook a {Recipe}
+SearchIntent Lets cook an {Recipe}
+SearchIntent Lets cook {Recipe}
+SearchIntent Lets make a {Recipe}
+SearchIntent Lets make an {Recipe}
+SearchIntent Lets make {Recipe}
+SearchIntent Lets prepare a {Recipe}
+SearchIntent Lets prepare an {Recipe}
+SearchIntent Lets prepare {Recipe}
 SearchIntent Please Tell me how to cook {Recipe}
 SearchIntent Please Tell me how to make {Recipe}
 SearchIntent Please Tell me how to prepare {Recipe}
@@ -96,7 +96,7 @@ SearchIntent an {Recipe}
 SearchIntent {Recipe}
 
 HelpIntent What can I say
-HelpIntent What commands are there?
+HelpIntent What commands are there
 HelpIntent Help
 HelpIntent Help me
 HelpIntent I need help
@@ -116,8 +116,8 @@ PrevIntent Repeat that please
 PrevIntent Please repeat that
 PrevIntent What did you say
 PrevIntent What did you just say
-PrevIntent I didn't get that
-PrevIntent I didn't qute get that
+PrevIntent I didnt get that
+PrevIntent I didnt qute get that
 
 NextIntent Next
 NextIntent Next ingredient
@@ -130,7 +130,7 @@ NextIntent Tell me the next ingredient
 NextIntent Tell me the next step
 NextIntent Go on
 NextIntent Keep reading
-NextIntent What's next
+NextIntent Whats next
 NextIntent Keep going
 
 IngredientsIntent Ingredients
