@@ -5,7 +5,7 @@
 		"slots": [
 			{
 				"name": "Recipe",
-				"type": "LIST_OF_RECIPES"
+				"type": "AMAZON.LITERAL"
 			}
 		]
 		},
@@ -25,7 +25,7 @@
 		"intent": "DirectionsIntent"
 		},
 		{
-		"intent" : "StartIntent"
+		"intent": "StartIntent"
 		},
 		{
 		"intent": "AMAZON.StartOverIntent"
