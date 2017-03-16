@@ -12,6 +12,11 @@
   <script>
     $(document).ready(function () {
       $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes", function (data, status) {
+        //var result = $.grep(data.Items, function (e) { return e['Recipe name'] == window.location.hash.slice(1) });
+        //$(dishName).html(result[0]["Recipe name"]);
+        //$(img).attr("src", result[0].Image);
+        //$(ingredients).html(result[0].Ingredients.replace(/\\/g, "<br />"));
+        //$(directions).html(result[0].Directions.replace(/\\/g, "<br />"));
         data.Items.forEach(function (item) {
           $('<div class="thumbnail"><img src="' + item.Image + '" alt="" width="2000" class="cards" /><h4>' + item["Recipe name"] + '</h4><a href="ingredient_page.html#' + item["Recipe name"] + '"style="text-decoration:none"><p class="button">Ingredients</p></a><a href="direction_page.html#' + item["Recipe name"] + '" style="text-decoration:none"><p class="button">Directions</p></a></div>').appendTo(".gallery");
         });

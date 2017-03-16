@@ -6,6 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Directions</title>
+  <style>
+		  #direction_sec {background-color: darkgray;
+	  					  padding:36px;}
+  </style>
   <link href="css/singlePageTemplate.css" rel="stylesheet" type="text/css">
   <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
   <script>
@@ -27,7 +31,7 @@
         $(dishName).html(result[0]["Recipe name"]);
         $(img).attr("src", result[0].Image);
         $(ingredients).html(result[0].Ingredients.replace(/\\/g, "<br />"));
-        $(directions).html(result[0].Directions.replace(/\\/g, "<br />"));
+        $(directions).html(result[0].Directions.replace(/\\/g, "<p />"));
       });
     });
   </script>
@@ -60,11 +64,11 @@
         </article>
       </footer>
     </section>
-    <section class="hero" id="ingredient_sec">
+    <section id="ingredient_sec">
     </section>
-    <section class="hero" id="direction_sec">
-      <h2 class="hero_header">DIRECTIONS</h2>
-      <p class="tagline" id="directions"></p>
+    <section id="direction_sec">
+      <h2 style="color:white;">DIRECTIONS</h2>
+      <p id="directions" style="color:white;"></p>
     </section>
   </div>
   <!-- Main Container Ends -->
