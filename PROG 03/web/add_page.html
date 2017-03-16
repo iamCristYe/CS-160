@@ -1,53 +1,80 @@
 <!doctype html>
 <html lang="en-US">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>New Recipe</title>
-<link href="css/singlePageTemplate.css" rel="stylesheet" type="text/css">
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-<script>var __adobewebfontsappname__="dreamweaver"</script>
-<script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>New Recipe</title>
+  <link href="css/singlePageTemplate.css" rel="stylesheet" type="text/css">
+  <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+  <script>
+    var __adobewebfontsappname__ = "dreamweaver"
+  </script>
+  <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-<style> 
-body{text-align:center}
-</style> 
+  <style>
+    body {
+      text-align: center
+    }
+  </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#submit").click(function () {
+        $.ajax({
+          url: 'https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes',
+          type: 'POST',
+          data: JSON.stringify({ "TableName": "Recipes", "Item": { "Recipe name": $(name).text(), "Ingredients": $(ingredients).text(), "Directions": $(directions).text(), "Image": $(image).text() } }),
+          success: function (data) {
+            alert("Success");
+          },
+          error: function (xhr, ajaxOptions, thrownError) {
+            alert("Error");
+          }
+        });
+      });
+    });
+  </script>
+
 </head>
+
 <body>
-<!-- Main Container -->
-<div class="container"> 
-  <!-- Navigation -->
-  <header>
-    <h4 class="logo">NEW</h4>
-    <nav>
-      <ul>
-        <li> <a href="recipe.html">HOME</a></li>
-        <li> <a href="recipe.html">SEARCH</a></li>
-        <li> <a href="recipe.html">BACK</a></li>
-      </ul>
-    </nav>
-  </header>
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
-  <h3 style="color:white;font-size:26px;"><b>ADD YOUR NEW RECIPE HERE</b></h3>
-  	<p style="color:white;font-size:22px;">Recipe Name</p>
-  	<input type="text" name="recipe_name" size="52"/>
-  	<p style="color:white;font-size:22px;">Image Address</p>
-  	<input type="text" name="image_addr" size="52"/>
-  	<p style="color:white;font-size:22px;">Ingredients</p>
-  	<textarea name="ingredient_list" cols="50" rows="10"></textarea>
-  	<p style="color:white;font-size:22px;">Directions</p>
-  	<textarea name="ingredient_list" cols="50" rows="15"></textarea>
-  	
-  	<div class="button">SUBMIT </div>
-  </section>
-</div>
-<!-- Main Container Ends -->
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Navigation -->
+    <header>
+      <h4 class="logo">NEW</h4>
+      <nav>
+        <ul>
+          <li> <a href="recipe.html">HOME</a></li>
+          <li> <a href="recipe.html">SEARCH</a></li>
+          <li> <a href="recipe.html">BACK</a></li>
+        </ul>
+      </nav>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <h3 style="color:white;font-size:26px;"><b>ADD YOUR NEW RECIPE HERE</b></h3>
+      <p style="color:white;font-size:22px;">Recipe Name</p>
+      <input type="text" name="recipe_name" size="52" / id="name">
+      <p style="color:white;font-size:22px;">Image Address</p>
+      <input type="text" name="image_addr" size="52" / id="image">
+      <p style="color:white;font-size:22px;">Ingredients</p>
+      <textarea name="ingredient_list" cols="50" rows="10" id="ingredients"></textarea>
+      <p style="color:white;font-size:22px;">Directions</p>
+      <textarea name="directions" cols="50" rows="15" id="directions"></textarea>
+
+      <div class="button" id="submit">SUBMIT </div>
+    </section>
+  </div>
+  <!-- Main Container Ends -->
 </body>
+
 </html>
