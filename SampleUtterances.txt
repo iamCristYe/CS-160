@@ -55,15 +55,15 @@ SearchIntent I would like to make {Recipe}
 SearchIntent I would like to prepare a {Recipe}
 SearchIntent I would like to prepare an {Recipe}
 SearchIntent I would like to prepare {Recipe}
-SearchIntent I’d like to cook a {Recipe}
-SearchIntent I’d like to cook an {Recipe}
-SearchIntent I’d like to cook {Recipe}
-SearchIntent I’d like to make a {Recipe}
-SearchIntent I’d like to make an {Recipe}
-SearchIntent I’d like to make {Recipe}
-SearchIntent I’d like to prepare a {Recipe}
-SearchIntent I’d like to prepare an {Recipe}
-SearchIntent I’d like to prepare {Recipe}
+SearchIntent I'd like to cook a {Recipe}
+SearchIntent I'd like to cook an {Recipe}
+SearchIntent I'd like to cook {Recipe}
+SearchIntent I'd like to make a {Recipe}
+SearchIntent I'd like to make an {Recipe}
+SearchIntent I'd like to make {Recipe}
+SearchIntent I'd like to prepare a {Recipe}
+SearchIntent I'd like to prepare an {Recipe}
+SearchIntent I'd like to prepare {Recipe}
 SearchIntent Let us cook a {Recipe}
 SearchIntent Let us cook an {Recipe}
 SearchIntent Let us cook {Recipe}
@@ -73,15 +73,15 @@ SearchIntent Let us make {Recipe}
 SearchIntent Let us prepare a {Recipe}
 SearchIntent Let us prepare an {Recipe}
 SearchIntent Let us prepare {Recipe}
-SearchIntent Lets cook a {Recipe}
-SearchIntent Lets cook an {Recipe}
-SearchIntent Lets cook {Recipe}
-SearchIntent Lets make a {Recipe}
-SearchIntent Lets make an {Recipe}
-SearchIntent Lets make {Recipe}
-SearchIntent Lets prepare a {Recipe}
-SearchIntent Lets prepare an {Recipe}
-SearchIntent Lets prepare {Recipe}
+SearchIntent Let's cook a {Recipe}
+SearchIntent Let's cook an {Recipe}
+SearchIntent Let's cook {Recipe}
+SearchIntent Let's make a {Recipe}
+SearchIntent Let's make an {Recipe}
+SearchIntent Let's make {Recipe}
+SearchIntent Let's prepare a {Recipe}
+SearchIntent Let's prepare an {Recipe}
+SearchIntent Let's prepare {Recipe}
 SearchIntent Please Tell me how to cook {Recipe}
 SearchIntent Please Tell me how to make {Recipe}
 SearchIntent Please Tell me how to prepare {Recipe}
@@ -116,8 +116,8 @@ PrevIntent Repeat that please
 PrevIntent Please repeat that
 PrevIntent What did you say
 PrevIntent What did you just say
-PrevIntent I didnt get that
-PrevIntent I didnt qute get that
+PrevIntent I didn't get that
+PrevIntent I didn't qute get that
 
 NextIntent Next
 NextIntent Next ingredient
@@ -130,7 +130,7 @@ NextIntent Tell me the next ingredient
 NextIntent Tell me the next step
 NextIntent Go on
 NextIntent Keep reading
-NextIntent Whats next
+NextIntent What's next
 NextIntent Keep going
 
 IngredientsIntent Ingredients
@@ -139,7 +139,7 @@ IngredientsIntent Give me the ingredients
 IngredientsIntent Give me the list of ingredients
 IngredientsIntent List of ingredients
 IngredientsIntent Read me the ingredients
-IngredientsIntent Tell me te ingredients
+IngredientsIntent Tell me the ingredients
 IngredientsIntent Read ingredients
 IngredientsIntent Read me the list of ingredients
 IngredientsIntent Ingredients please
