@@ -1,0 +1,43 @@
+{
+	"intents": [
+		{
+		"intent": "SearchIntent",
+		"slots": [
+			{
+				"name": "Recipe",
+				"type": "LIST_OF_RECIPES"
+			}
+		]
+		},
+		{
+		"intent": "HelpIntent"
+		},
+		{
+		"intent": "PrevIntent"
+		},
+		{
+		"intent": "NextIntent"
+		},		
+		{
+		"intent": "IngredientsIntent"
+		},
+		{
+		"intent": "DirectionsIntent"
+		},
+		{
+		"intent" : "StartIntent"
+		},
+		{
+		"intent": "AMAZON.StartOverIntent"
+		},
+		{
+		"intent": "AMAZON.YesIntent"
+		},
+		{
+		"intent": "AMAZON.NoIntent"
+		},
+		{
+		"intent": "AMAZON.StopIntent"
+		}
+	]
+}
