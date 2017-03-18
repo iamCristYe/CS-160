@@ -5,7 +5,7 @@
 		"slots": [
 			{
 				"name": "Recipe",
-				"type": "AMAZON.LITERAL"
+				"type": "AMAZON.FOOD"
 			}
 		]
 		},
