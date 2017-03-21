@@ -156,15 +156,15 @@ DirectionsIntent Tell me the list of instructions
 DirectionsIntent Read me the instructions
 DirectionsIntent Read me the list of instructions
 DirectionsIntent Read me the directions
+DirectionsIntent Read me the recipe
 DirectionsIntent Read me the list of directions
 DirectionsIntent Directions please
 DirectionsIntent Instructions please
-
-StartIntent Start
-StartIntent Read recipe
-StartIntent Read the recipe
-StartIntent Start reading
-StartIntent Start reading the recipe
+DirectionsIntent Start
+DirectionsIntent Read recipe
+DirectionsIntent Read the recipe
+DirectionsIntent Start reading
+DirectionsIntent Start reading the recipe
 
 AMAZON.StartOverIntent Start again
 AMAZON.StartOverIntent Start again please
