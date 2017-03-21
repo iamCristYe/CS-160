@@ -143,6 +143,7 @@ IngredientsIntent Tell me the ingredients
 IngredientsIntent Read ingredients
 IngredientsIntent Read me the list of ingredients
 IngredientsIntent Ingredients please
+IngredientsIntent What are the ingredients
 
 DirectionsIntent Directions
 DirectionsIntent Give directions
