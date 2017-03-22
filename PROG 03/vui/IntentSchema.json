@@ -10,7 +10,7 @@
 		]
 		},
 		{
-		"intent": "HelpIntent"
+		"intent": "AMAZON.HelpIntent"
 		},
 		{
 		"intent": "PrevIntent"
