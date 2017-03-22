@@ -95,15 +95,15 @@ SearchIntent a {Recipe}
 SearchIntent an {Recipe}
 SearchIntent {Recipe}
 
-HelpIntent What can I say
-HelpIntent What commands are there
-HelpIntent Help
-HelpIntent Help me
-HelpIntent I need help
-HelpIntent I want help
-HelpIntent How do I use this app
-HelpIntent Sample phrases
-HelpIntent Can you give an example
+AMAZON.HelpIntent What can I say
+AMAZON.HelpIntent What commands are there
+AMAZON.HelpIntent Help
+AMAZON.HelpIntent Help me
+AMAZON.HelpIntent I need help
+AMAZON.HelpIntent I want help
+AMAZON.HelpIntent How do I use this app
+AMAZON.HelpIntent Sample phrases
+AMAZON.HelpIntent Can you give an example
 
 PrevIntent Previous
 PrevIntent Previous ingredient
@@ -143,6 +143,7 @@ IngredientsIntent Tell me the ingredients
 IngredientsIntent Read ingredients
 IngredientsIntent Read me the list of ingredients
 IngredientsIntent Ingredients please
+IngredientsIntent What are the ingredients
 
 DirectionsIntent Directions
 DirectionsIntent Give directions
@@ -156,15 +157,15 @@ DirectionsIntent Tell me the list of instructions
 DirectionsIntent Read me the instructions
 DirectionsIntent Read me the list of instructions
 DirectionsIntent Read me the directions
+DirectionsIntent Read me the recipe
 DirectionsIntent Read me the list of directions
 DirectionsIntent Directions please
 DirectionsIntent Instructions please
-
-StartIntent Start
-StartIntent Read recipe
-StartIntent Read the recipe
-StartIntent Start reading
-StartIntent Start reading the recipe
+DirectionsIntent Start
+DirectionsIntent Read recipe
+DirectionsIntent Read the recipe
+DirectionsIntent Start reading
+DirectionsIntent Start reading the recipe
 
 AMAZON.StartOverIntent Start again
 AMAZON.StartOverIntent Start again please

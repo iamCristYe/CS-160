@@ -10,7 +10,7 @@
 		]
 		},
 		{
-		"intent": "HelpIntent"
+		"intent": "AMAZON.HelpIntent"
 		},
 		{
 		"intent": "PrevIntent"
@@ -25,16 +25,10 @@
 		"intent": "DirectionsIntent"
 		},
 		{
-		"intent": "StartIntent"
-		},
-		{
 		"intent": "AMAZON.StartOverIntent"
 		},
 		{
-		"intent": "AMAZON.YesIntent"
-		},
-		{
-		"intent": "AMAZON.NoIntent"
+		"intent": "AMAZON.RepeatIntent"
 		},
 		{
 		"intent": "AMAZON.StopIntent"

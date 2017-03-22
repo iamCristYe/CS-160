@@ -8,13 +8,15 @@ const dynamo = new doc.DynamoDB();
 
 var Alexa = require('alexa-sdk');
 
-var APP_ID = "";
+var APP_ID = "amzn1.ask.skill.83fa4658-9238-4af1-84b3-9ba7764ae2d8";
 
 var states = {
-    MAIN: '_MAIN'
-    INGREDIENTS: '_INGREDIENTS'
+    MAIN: '_MAIN',
+    INGREDIENTS: '_INGREDIENTS',
     DIRECTIONS: '_DIRECTIONS'
 };
+
+var tableData = [];
 
 
 /**
@@ -57,63 +59,81 @@ exports.handler = (event, context, callback) => {
                 done(new Error(`Unsupported method "${event.httpMethod}"`));
         }
     } else {
-        var alexa = Alexa.handler(event, context);
-        alexa.APP_ID = APP_ID;
-        alexa.registerHandlers(mainHandlers, ingredientsHandler, directionsHandler);
-        alexa.execute();
-    }
-    
-};
-
-var mainHandlers = Alexa.CreateStateHandler(states.MAIN, {
-    'LaunchRequest': function () {
-        this.handler.state = states.MAIN;
-        dynamo.scan({
+        if (event.session.attributes.tableData === undefined) {
+            dynamo.scan({
                 TableName : "RecipesList"
             }, function(err, data) {
                 if (err) {
                     console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
                 } else {
-                    // print all the movies
                     console.log("Scan succeeded.");
-                    this.attributes.tableData = data.Items;
+                    tableData = data["Items"];
+                    var alexa = Alexa.handler(event, context);
+                    alexa.APP_ID = APP_ID;
+                    alexa.registerHandlers(newSessionHandlers, mainHandlers, ingredientsHandlers, directionsHandlers);
+                    alexa.execute();
                 }
             });
+        } else {
+            var alexa = Alexa.handler(event, context);
+            alexa.APP_ID = APP_ID;
+            alexa.registerHandlers(newSessionHandlers, mainHandlers, ingredientsHandlers, directionsHandlers);
+            alexa.execute();
+        }
+    }
+    
+};
+
+var newSessionHandlers = {
+    'LaunchRequest': function () {
+        this.handler.state = states.MAIN;
+        this.attributes.tableData = tableData;
         this.attributes.speechOutput = "Recipe assistant, what recipe would you like to make?";
         this.emit(':ask', this.attributes.speechOutput);
     },
+    'SessionEndedRequest': function () {
+        this.emitWithState('AMAZON.StopIntent');
+    },
+    'Unhandled': function () {
+        this.attributes.speechOutput = "I'm sorry, I can't help you with that.";
+        this.emit(':ask', this.attributes.speechOutput);
+    },
+};
+
+var mainHandlers = Alexa.CreateStateHandler(states.MAIN, {
     'SearchIntent': function () {
-        var param = intent.slots.Recipe.value;
-        Boolean recipeExists = false;
+        var param = this.event.request.intent.slots.Recipe.value.toLowerCase();
+        var recipeExists = false;
         for (var i in this.attributes.tableData) {
-            var name = Items[i]['RecipeName'].toLowerCase();
+            var name = this.attributes.tableData[i].RecipeName.toLowerCase();
             if (name === param) {
-                this.attributes.ingredients = Items[i]['IngredientsList'].split("\\");
-                this.attributes.directions = Items[i]['PrepDirections'].split("\\");
+                this.attributes.ingredients = this.attributes.tableData[i].IngredientsList.split("\\");
+                this.attributes.directions = this.attributes.tableData[i].PrepDirections.split("\\");
                 this.attributes.speechOutput = "Found one recipe for " + name + ". Say 'what are the ingredients' for the list of ingredients or 'read recipe' to start the directions.";
                 recipeExists = true;
+                break;
             }
         }
-        if (recipeExists === false) {
-            this.speechOutput = "Could not find a recipe by that name.";
+        if (!recipeExists) {
+            this.attributes.speechOutput = "Could not find a recipe by that name.";
         }
         this.emit(':ask', this.attributes.speechOutput);
 
     },
     'IngredientsIntent': function () {
-        if (this.attributes.ingredients == null) {
+        if (this.attributes.ingredients === undefined) {
             this.emit(':ask', "Please pick a recipe.");
         } else {
             this.handler.state = states.INGREDIENTS;
-            this.emit("IngredientsIntent");
+            this.emitWithState("IngredientsIntent");
         }
     },
     'DirectionsIntent': function () {
-        if (this.attributes.directions == null) {
+        if (this.attributes.directions === undefined) {
             this.emit(':ask', "Please pick a recipe.");
         } else {
             this.handler.state = states.DIRECTIONS;
-            this.emit("DirectionsIntent");
+            this.emitWithState("DirectionsIntent");
         }
     },
     'AMAZON.HelpIntent': function () {
@@ -130,7 +150,7 @@ var mainHandlers = Alexa.CreateStateHandler(states.MAIN, {
         this.emit(':tell', "Goodbye!");
     },
     'SessionEndedRequest': function () {
-        this.emit('AMAZON.StopIntent');
+        this.emitWithState('AMAZON.StopIntent');
     },
     'Unhandled': function () {
         this.attributes.speechOutput = "I'm sorry, I can't help you with that.";
@@ -138,23 +158,22 @@ var mainHandlers = Alexa.CreateStateHandler(states.MAIN, {
     },
 });
 
-var ingredientsHandler = Alexa.CreateStateHandler(states.INGREDIENTS, {
+var ingredientsHandlers = Alexa.CreateStateHandler(states.INGREDIENTS, {
     'PrevIntent': function () {
-        try {
+        if (this.attributes.index === 0) {
+        } else {
             this.attributes.index--;
             this.attributes.speechOutput = this.attributes.ingredients[this.attributes.index];
-            this.emit(':ask', this.attributes.speechOutput);
-        } catch {
-            this.emit(':ask', this.attributes.speechOutput);
         }
+        this.emit(':ask', this.attributes.speechOutput);
     },
     'NextIntent': function () {
-        try {
+        if (this.attributes.index === this.attributes.ingredients.length - 1) {
+            this.emitWithState("DirectionsIntent");
+        } else {
             this.attributes.index++;
             this.attributes.speechOutput = this.attributes.ingredients[this.attributes.index];
             this.emit(':ask', this.attributes.speechOutput);
-        } catch {
-            this.emit("DirectionsIntent");
         }
     },
     'IngredientsIntent': function () {
@@ -164,7 +183,7 @@ var ingredientsHandler = Alexa.CreateStateHandler(states.INGREDIENTS, {
     },
     'DirectionsIntent': function () {
         this.handler.state = states.DIRECTIONS;
-        this.emit("DirectionsIntent");
+        this.emitWithState("DirectionsIntent");
     },
     'AMAZON.HelpIntent': function () {
         this.attributes.speechOutput = "You can navigate the ingredients list by saying: \
@@ -172,17 +191,18 @@ var ingredientsHandler = Alexa.CreateStateHandler(states.INGREDIENTS, {
         this.emit(':ask', this.attributes.speechOutput);
     },
     'AMAZON.StartOverIntent': function () {
-        this.emit("IngredientsIntent");
+        this.emitWithState("IngredientsIntent");
     },
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', this.attributes.speechOutput);
     },
     'AMAZON.StopIntent': function () {
         this.handler.state = states.MAIN;
-        this.emit("LaunchRequest");
+        this.attributes.speechOutput = "Recipe assistant, what recipe would you like to make?";
+        this.emit(':ask', this.attributes.speechOutput);
     },
     'SessionEndedRequest': function () {
-        this.emit('AMAZON.StopIntent');
+        this.emitWithState('AMAZON.StopIntent');
     },
     'Unhandled': function () {
         this.attributes.speechOutput = "I'm sorry, I can't help you with that.";
@@ -190,25 +210,23 @@ var ingredientsHandler = Alexa.CreateStateHandler(states.INGREDIENTS, {
     },
 });
 
-var directionsHandler = Alexa.CreateStateHandler(states.DIRECTIONS, {
+var directionsHandlers = Alexa.CreateStateHandler(states.DIRECTIONS, {
     'PrevIntent': function () {
-        try {
+        if (this.attributes.index === 0) {
+        } else {
             this.attributes.index--;
             this.attributes.speechOutput = this.attributes.directions[this.attributes.index];
-            this.emit(':ask', this.attributes.speechOutput);
-        } catch {
-            this.emit(':ask', this.attributes.speechOutput);
         }
+        this.emit(':ask', this.attributes.speechOutput);
     },
     'NextIntent': function () {
-        try {
-           this.attributes.index++;
+        if (this.attributes.index === this.attributes.directions.length - 1) {
+            this.emitWithState("AMAZON.StopIntent");
+        } else {
+            this.attributes.index++;
             this.attributes.speechOutput = this.attributes.directions[this.attributes.index];
-            this.emit(':ask', this.attributes.speechOutput); 
-        } catch {
-            this.emit('AMAZON.StopIntent');
+            this.emit(':ask', this.attributes.speechOutput);
         }
-        
     },
     'IngredientsIntent': function () {
         this.handler.state = states.INGREDIENTS;
@@ -225,17 +243,18 @@ var directionsHandler = Alexa.CreateStateHandler(states.DIRECTIONS, {
         this.emit(':ask', this.attributes.speechOutput);
     },
     'AMAZON.StartOverIntent': function () {
-        this.emit('DirectionsIntent');
+        this.emitWithState('DirectionsIntent');
     },
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', this.attributes.speechOutput);
     },
     'AMAZON.StopIntent': function () {
         this.handler.state = states.MAIN;
-        this.emitWithState('LaunchRequest');
+        this.attributes.speechOutput = "Recipe completed! Enjoy your meal. Ask for another recipe if still hungry.";
+        this.emit(':ask', this.attributes.speechOutput);
     },
     'SessionEndedRequest': function () {
-        this.emit('AMAZON.StopIntent');
+        this.emitWithState('AMAZON.StopIntent');
     },
     'Unhandled': function () {
         this.attributes.speechOutput = "I'm sorry, I can't help you with that.";
