@@ -59,9 +59,9 @@ exports.handler = (event, context, callback) => {
                 done(new Error(`Unsupported method "${event.httpMethod}"`));
         }
     } else {
-        if (event.session.attributes.tableData === undefined) {
+        if (tableData.length === 0) {
             dynamo.scan({
-                TableName : "RecipesList"
+                TableName : "RecipeList"
             }, function(err, data) {
                 if (err) {
                     console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
@@ -138,8 +138,8 @@ var mainHandlers = Alexa.CreateStateHandler(states.MAIN, {
     },
     'AMAZON.HelpIntent': function () {
         this.attributes.speechOutput = "You can search for a recipe by saying, 'Find,' then your recipe name.\
-        For example, 'Find pork chops'. Similar commands include: How do I cook coconut milk corned beef and cabbage?\
-        How do I make homemade cookies? I would like to prepare carrot cake oatmeal. Search for Shepherd's Pie.\
+        For example, 'Find pork chop'. Similar commands include: How do I cook corned beef?\
+        How do I make homemade cookies? I would like to prepare carrot cake. Search for Shepherd's Pie.\
         You can also use the commands 'exit' and 'quit' to leave the app.";
         this.emit(':ask', this.attributes.speechOutput);
     },
