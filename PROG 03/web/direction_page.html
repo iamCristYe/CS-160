@@ -26,12 +26,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes", function (data, status) {
+      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=RecipeList", function (data, status) {
         var result = $.grep(data.Items, function (e) { return e['Recipe name'] == window.location.hash.slice(1) });
-        $(dishName).html(result[0]["Recipe name"]);
-        $(img).attr("src", result[0].Image);
-        $(ingredients).html(result[0].Ingredients.replace(/\\/g, "<br />"));
-        $(directions).html(result[0].Directions.replace(/\\/g, "<p />"));
+        $(dishName).html(result[0].RecipeName);
+        $(img).attr("src", result[0].ImageSRC);
+        $(ingredients).html(result[0].IngredientsList.replace(/\\/g, "<br />"));
+        $(directions).html(result[0].PrepDirections.replace(/\\/g, "<p />"));
       });
     });
   </script>
