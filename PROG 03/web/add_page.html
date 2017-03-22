@@ -29,9 +29,9 @@
     $(document).ready(function () {
       $("#submit").click(function () {
         $.ajax({
-          url: 'https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes',
+          url: 'https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=RecipeList',
           type: 'POST',
-          data: JSON.stringify({ "TableName": "Recipes", "Item": { "Recipe name": $('#name').val(), "Ingredients": $(ingredients).val().replace(/\n/g, "\\"), "Directions": $(directions).val().replace(/\n/g, "\\"), "Image": $(image).val() } }),
+          data: JSON.stringify({ "TableName": "RecipeList", "Item": { "RecipeName": $('#name').val(), "IngredientsList": $(ingredients).val().replace(/\n/g, "\\"), "PrepDirections": $(directions).val().replace(/\n/g, "\\"), "ImageSRC": $(image).val() } }),
           success: function (data) {
             alert("Success");
           },

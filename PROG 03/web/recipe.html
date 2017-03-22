@@ -11,9 +11,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=Recipes", function (data, status) {
+      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=RecipeList", function (data, status) {
         data.Items.forEach(function (item) {
-          $('<div class="thumbnail"><img src="' + item.Image + '" alt="" width="2000" class="cards" /><h4>' + item["Recipe name"] + '</h4><a href="ingredient_page.html#' + item["Recipe name"] + '"style="text-decoration:none"><p class="button">Ingredients</p></a><a href="direction_page.html#' + item["Recipe name"] + '" style="text-decoration:none"><p class="button">Directions</p></a></div>').appendTo(".gallery");
+          $('<div class="thumbnail"><img src="' + item.ImageSRC + '" alt="" width="2000" class="cards" /><h4>' + item.RecipeName + '</h4><a href="ingredient_page.html#' + item.RecipeName + '"style="text-decoration:none"><p class="button">Ingredients</p></a><a href="direction_page.html#' + item.RecipeName + '" style="text-decoration:none"><p class="button">Directions</p></a></div>').appendTo(".gallery");
         });
       });
     });
