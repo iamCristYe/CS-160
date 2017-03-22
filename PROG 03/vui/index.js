@@ -61,7 +61,7 @@ exports.handler = (event, context, callback) => {
     } else {
         if (event.session.attributes.tableData === undefined) {
             dynamo.scan({
-                TableName : "RecipesList"
+                TableName : "RecipeList"
             }, function(err, data) {
                 if (err) {
                     console.error("Unable to scan the table. Error JSON:", JSON.stringify(err, null, 2));
