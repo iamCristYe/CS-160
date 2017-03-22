@@ -22,7 +22,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
     $(document).ready(function () {
-      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=RecipesDB", function (data, status) {
+      $.get("https://203pd4w6r5.execute-api.us-east-1.amazonaws.com/prod/db_api?TableName=RecipesList", function (data, status) {
         var result = $.grep(data.Items, function (e) { return e.RecipeName == window.location.hash.slice(1) });
         $(ingredients).html(result[0].IngredientsList.replace(/\\/g, "<br />"));
       });
