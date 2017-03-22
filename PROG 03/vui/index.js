@@ -37,8 +37,10 @@ exports.handler = (event, context, callback) => {
             statusCode: err ? '400' : '200',
             body: err ? err.message : JSON.stringify(res),
             headers: {
-                'Content-Type': 'application/json', 'Access-Control-Allow-Headers': 'x-requested-with',
-                "Access-Control-Allow-Origin" : "*", "Access-Control-Allow-Credentials" : true,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Headers': 'x-requested-with',
+                "Access-Control-Allow-Origin" : "*",
+                "Access-Control-Allow-Credentials" : true
             },
         });
 
