@@ -77,7 +77,12 @@
           break;
       }
       data.forEach(function (item) {
-        $('<tr class="items"><td>' + item.foodName + '</td><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + item.total + '</td>').appendTo(".itemTable");
+        var total = 0;
+        var result = $.grep(data, function (e) { return e.foodName == item.foodName });
+        result.forEach(function (item) {
+          total += Number(item.quantity);
+        });
+        $('<tr class="items" onclick=javascript:window.location="item.html#' + item.foodName + '"><td>' + item.foodName + '</td><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + total + '</td>').appendTo(".itemTable");
       });
     }
 

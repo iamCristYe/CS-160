@@ -37,15 +37,16 @@
       });
     };
     $(document).ready(function () {
-      $(ingredients).html(result[0].IngredientsList.replace(/\\/g, "<br />"));
-
-
+      $('#Name').html(window.location.hash.slice(1));
+      var total = 0;
       $.get("https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge", function (data, status) {
         var result = $.grep(data.Items, function (e) { return e.foodName == window.location.hash.slice(1) });
         result.forEach(function (item) {
+          total +=Number( item.quantity);
           temp = "'" + item.itemId + "'";
           $('<tr class="items" id="' + item.itemId + '"><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td>' + '<td><button type="submit" style="float: right;"><a onclick="javascrpit:deleteItem(' + temp + ');"><img src="images/button/Remove-icon.png" height="25" /></a></button></td></tr>').appendTo(".itemTable");
         });
+        $('#Total').html(total);
       });
     });
   </script>
@@ -119,8 +120,8 @@
         <img src="images/button/Back-icon.png" height="30"/>
       </a>
     </button>
-      <h4 class="logo" style="color: white;padding-left: 40px;" id='Name'>ItemName</h4>
-      <h4 class="logo" style="color: white;padding-left: 70px; " id='Total'>Total:ItemQuantity</h4>
+      <h4 class="logo" style="color: white;padding-left: 40px;" id='Name'></h4>
+      <h4 class="logo" style="color: white;padding-left: 70px; ">Total:<span id='Total'></span></h4>
       <nav>
         <ul>
           <li><a href="main.html">Home</a></li>

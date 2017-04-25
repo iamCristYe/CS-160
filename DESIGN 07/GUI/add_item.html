@@ -19,17 +19,34 @@
         var d = new Date();
         d.setDate(d.getDate() + Number($('#expiration').val()));
         var formattedDate = d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
-        $.ajax({
-          url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
-          type: 'POST',
-          data: JSON.stringify({ "TableName": "magicFridge", "Item": { "location": $('#location').val(), "quantity": Number($('#quantity').val()), "expirationDate": formattedDate, "foodName": $('#name').val().replace(/\n/g, "\\"), "itemId": $('#name').val().replace(/\n/g, "\\") + formattedDate, "userId": "Isaiah" } }),
-          success: function (data) {
-            alert("Success");
-          },
-          error: function (xhr, ajaxOptions, thrownError) {
-            alert("Error");
+        $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+          "type": "POST",
+          "data": {
+            "TableName": "magicFridge",
+            //New item information to be posted 
+            "Item": {
+              "location": $('#location').val(), "quantity": Number($('#quantity').val()), "expirationDate": formattedDate, "foodName": $('#name').val().replace(/\n/g, "\\"), "itemId": $('#name').val().replace(/\n/g, "\\") + formattedDate, "userId": "Isaiah"
+            }
           }
-        });
+        }),
+          function (data, status) {
+            alert(status);
+          })
+
+
+
+
+        // $.ajax({
+        //   url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+        //   type: 'POST',
+        //   data: JSON.stringify({ "type": "POST", "data": { "TableName": "magicFridge", "Item": { "location": $('#location').val(), "quantity": Number($('#quantity').val()), "expirationDate": formattedDate, "foodName": $('#name').val().replace(/\n/g, "\\"), "itemId": $('#name').val().replace(/\n/g, "\\") + formattedDate, "userId": "Isaiah" } } }),
+        //   success: function (data) {
+        //     alert("Success");
+        //   },
+        //   error: function (xhr, ajaxOptions, thrownError) {
+        //     alert("Error");
+        //   }
+        // });
       });
     });
   </script>
