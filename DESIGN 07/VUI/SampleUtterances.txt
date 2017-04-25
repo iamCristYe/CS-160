@@ -1,0 +1,276 @@
+ExpiryIntent What expires soon
+ExpiryIntent What will expire soon
+ExpiryIntent Tell me what expires soon
+ExpiryIntent Tell me what will expire soon
+ExpiryIntent What food expires soon
+ExpiryIntent What food will expire soon
+ExpiryIntent Tell me what food expires soon
+ExpiryIntent Tell me what food will expire soon
+ExpiryIntent What goes bad soon
+ExpiryIntent What will go bad soon
+ExpiryIntent What food goes bad soon
+ExpiryIntent What food will go bad soon
+ExpiryIntent Tell me what will go bad soon
+ExpiryIntent Tell me what food will go bad soon
+ExpiryIntent What expires
+ExpiryIntent What is going bad soon
+ExpiryIntent What is going bad
+ExpiryIntent What is expiring
+ExpiryIntent When is <Item> expiring
+ExpiryIntent When does <Item> expire
+ExpiryIntent When will <Item> expire
+ExpiryIntent When will <Item> go bad
+ExpiryIntent When does <Item> go bad
+ExpiryIntent When is <Item> going bad
+ExpiryIntent What day does <Item> expire
+ExpiryIntent How many days until <Item> expires
+ExpiryIntent How long until <Item> expires
+ExpiryIntent What date does <Item> expire on
+ExpiryIntent What is the <Item> expiration date
+ExpiryIntent What is the expiration date of <Item>
+ExpiryIntent Read <Item> expiration date
+ExpiryIntent What expires in <Number> days
+ExpiryIntent What goes bad in <Number> days
+ExpiryIntent What expires within <Number> days
+ExpiryIntent What goes bad within <Number> days
+ExpiryIntent What expires by <Date>
+ExpiryIntent What goes bad by <Date>
+
+AddItemIntent Add <Quantity> <Item> to the fridge
+AddItemIntent Put <Quantity> <Item> in the fridge
+AddItemIntent Add <Quantity> <Item>
+AddItemIntent Add <Item>
+AddItemIntent Add <Item> to the fridge
+AddItemIntent Put <Item> in the fridge
+AddItemIntent Add <Item> to the <Location>
+AddItemIntent Add <Quantity> <Item> to the <Location>
+AddItemIntent Add <Quantity> <Item> to <Location>
+AddItemIntent Add <Quantity> <Item> to the <Location>
+AddItemIntent Add <Quantity> <Item> to the fridge
+AddItemIntent Place <Quantity> <Item> in <Location>
+AddItemIntent Place <Quantity> <Item> in the <Location>
+AddItemIntent Place <Quantity> <Item> in the fridge
+AddItemIntent Place <Quantity> <Item> on <Location>
+AddItemIntent Place <Quantity> <Item> on the <Location>
+AddItemIntent Place <Quantity> <Item> on the fridge
+AddItemIntent Put <Quantity> <Item> in <Location>
+AddItemIntent Put <Quantity> <Item> in the <Location>
+AddItemIntent Put <Quantity> <Item> in the fridge
+AddItemIntent Put <Quantity> <Item> on <Location>
+AddItemIntent Put <Quantity> <Item> on the <Location>
+AddItemIntent Put <Quantity> <Item> on the fridge
+
+RemoveItemIntent I ate <Quantity> <Item> from <Location>
+RemoveItemIntent I ate <Quantity> <Item> from the <Location>
+RemoveItemIntent I used <Quantity> <Item> from <Location>
+RemoveItemIntent I used <Quantity> <Item> from the <Location>
+RemoveItemIntent Remove <Quantity> <Item> from <Location>
+RemoveItemIntent Remove <Quantity> <Item> from the <Location>
+RemoveItemIntent Take out <Quantity> <Item> from <Location>
+RemoveItemIntent Take out <Quantity> <Item> from the <Location>
+RemoveItemIntent I ate <Item> from <Location>
+RemoveItemIntent I ate <Item> from the <Location>
+RemoveItemIntent I used <Item> from <Location>
+RemoveItemIntent I used <Item> from the <Location>
+RemoveItemIntent Remove <Item> from <Location>
+RemoveItemIntent Remove <Item> from the <Location>
+RemoveItemIntent Take out <Item> from <Location>
+RemoveItemIntent Take out <Item> from the <Location>
+RemoveItemIntent I ate <Item>
+RemoveItemIntent I ate <Item> from the fridge
+RemoveItemIntent I used <Item>
+RemoveItemIntent I used <Item> from the fridge
+RemoveItemIntent Remove <Item>
+RemoveItemIntent Remove <Item> from the fridge
+RemoveItemIntent Take out <Item>
+RemoveItemIntent Take out <Item> from the fridge
+RemoveItemIntent I ate <Quantity> <Item>
+RemoveItemIntent I ate <Quantity> <Item> from the fridge
+RemoveItemIntent I used <Quantity> <Item>
+RemoveItemIntent I used <Quantity> <Item> from the fridge
+RemoveItemIntent Remove <Quantity> <Item>
+RemoveItemIntent Remove <Quantity> <Item> from the fridge
+RemoveItemIntent Take out <Quantity> <Item>
+RemoveItemIntent Take out <Quantity> <Item> from the fridge
+
+SpecifyIntent <Quantity>
+SpecifyIntent There is <Quantity>
+SpecifyIntent There are <Quantity>
+SpecifyIntent About <Quantity>
+SpecifyIntent <Location>
+SpecifyIntent On the <Location>
+SpecifyIntent In the <Location>
+SpecifyIntent Inside the <Location>
+SpecifyIntent Over the <Location>
+SpecifyIntent On top of the <Location>
+SpecifyIntent Under the <Location>
+SpecifyIntent Around the <Location>
+SpecifyIntent I put it in the <Location>
+SpecifyIntent It's in the <Location>
+SpecifyIntent It's near the <Location>
+SpecifyIntent <ExpirationDate>
+SpecifyIntent It expires on <ExpirationDate>
+SpecifyIntent The expiration date is <ExpirationDate>
+SpecifyIntent <ExpirationDate> is when it expires
+SpecifyIntent <ExpirationDate> is the expiration date
+SpecifyIntent <DaysUntilExpiry
+SpecifyIntent It expires in <DaysUntilExpiry> days
+SpecifyIntent <DaysUntilExpiry> days until it expires
+SpecifyIntent It has <DaysUntilExpiry> days until it expires
+SpecifyIntent It goes bad in <DaysUntilExpiry> days
+SpecifyIntent <DaysUntilExpiry> days until it goes bad
+
+FindRecipeIntent Find me a dish containing <Item>
+FindRecipeIntent Find me a dish made with <Item>
+FindRecipeIntent Find me a dish that contains <Item>
+FindRecipeIntent Find me a dish that uses <Item>
+FindRecipeIntent Find me a dish using <Item>
+FindRecipeIntent Find me a dish with <Item>
+FindRecipeIntent Find me a meal containing <Item>
+FindRecipeIntent Find me a meal made with <Item>
+FindRecipeIntent Find me a meal that contains <Item>
+FindRecipeIntent Find me a meal that uses <Item>
+FindRecipeIntent Find me a meal using <Item>
+FindRecipeIntent Find me a meal with <Item>
+FindRecipeIntent Find me a recipe containing <Item>
+FindRecipeIntent Find me a recipe made with <Item>
+FindRecipeIntent Find me a recipe that contains <Item>
+FindRecipeIntent Find me a recipe that uses <Item>
+FindRecipeIntent Find me a recipe using <Item>
+FindRecipeIntent Find me a recipe with <Item>
+FindRecipeIntent Give me a dish containing <Item>
+FindRecipeIntent Give me a dish made with <Item>
+FindRecipeIntent Give me a dish that contains <Item>
+FindRecipeIntent Give me a dish that uses <Item>
+FindRecipeIntent Give me a dish using <Item>
+FindRecipeIntent Give me a dish with <Item>
+FindRecipeIntent Give me a meal containing <Item>
+FindRecipeIntent Give me a meal made with <Item>
+FindRecipeIntent Give me a meal that contains <Item>
+FindRecipeIntent Give me a meal that uses <Item>
+FindRecipeIntent Give me a meal using <Item>
+FindRecipeIntent Give me a meal with <Item>
+FindRecipeIntent Give me a recipe containing <Item>
+FindRecipeIntent Give me a recipe made with <Item>
+FindRecipeIntent Give me a recipe that contains <Item>
+FindRecipeIntent Give me a recipe that uses <Item>
+FindRecipeIntent Give me a recipe using <Item>
+FindRecipeIntent Give me a recipe with <Item>
+FindRecipeIntent Tell me a dish containing <Item>
+FindRecipeIntent Tell me a dish made with <Item>
+FindRecipeIntent Tell me a dish that contains <Item>
+FindRecipeIntent Tell me a dish that uses <Item>
+FindRecipeIntent Tell me a dish using <Item>
+FindRecipeIntent Tell me a dish with <Item>
+FindRecipeIntent Tell me a meal containing <Item>
+FindRecipeIntent Tell me a meal made with <Item>
+FindRecipeIntent Tell me a meal that contains <Item>
+FindRecipeIntent Tell me a meal that uses <Item>
+FindRecipeIntent Tell me a meal using <Item>
+FindRecipeIntent Tell me a meal with <Item>
+FindRecipeIntent Tell me a recipe containing <Item>
+FindRecipeIntent Tell me a recipe made with <Item>
+FindRecipeIntent Tell me a recipe that contains <Item>
+FindRecipeIntent Tell me a recipe that uses <Item>
+FindRecipeIntent Tell me a recipe using <Item>
+FindRecipeIntent Tell me a recipe with <Item
+FindRecipeIntent Find me a dish
+FindRecipeIntent Find me a meal
+FindRecipeIntent Find me a recipe
+FindRecipeIntent Give me a dish
+FindRecipeIntent Give me a meal
+FindRecipeIntent Give me a recipe
+FindRecipeIntent Tell me a dish
+FindRecipeIntent Tell me a meal
+FindRecipeIntent Tell me a recipe
+
+AMAZON.HelpIntent What can I say
+AMAZON.HelpIntent What commands are there
+AMAZON.HelpIntent Help
+AMAZON.HelpIntent Help me
+AMAZON.HelpIntent I need help
+AMAZON.HelpIntent I want help
+AMAZON.HelpIntent How do I use this app
+AMAZON.HelpIntent Sample phrases
+AMAZON.HelpIntent Can you give an example
+
+PrevIntent Previous
+PrevIntent Previous ingredient
+PrevIntent Previous step
+PrevIntent Last step
+PrevIntent Last ingredient
+PrevIntent Repeat that
+PrevIntent Repeat
+PrevIntent Repeat that please
+PrevIntent Please repeat that
+PrevIntent What did you say
+PrevIntent What did you just say
+PrevIntent I didn't get that
+PrevIntent I didn't qute get that
+
+NextIntent Next
+NextIntent Next ingredient
+NextIntent Next step
+NextIntent Give me the next one
+NextIntent Give me the next ingredient
+NextIntent Give me the next step
+NextIntent Tell me the next one
+NextIntent Tell me the next ingredient
+NextIntent Tell me the next step
+NextIntent Go on
+NextIntent Keep reading
+NextIntent What's next
+NextIntent Keep going
+
+IngredientsIntent Ingredients
+IngredientsIntent Give ingredients
+IngredientsIntent Give me the ingredients
+IngredientsIntent Give me the list of ingredients
+IngredientsIntent List of ingredients
+IngredientsIntent Read me the ingredients
+IngredientsIntent Tell me the ingredients
+IngredientsIntent Read ingredients
+IngredientsIntent Read me the list of ingredients
+IngredientsIntent Ingredients please
+IngredientsIntent What are the ingredients
+
+DirectionsIntent Directions
+DirectionsIntent Give directions
+DirectionsIntent Give me the directions
+DirectionsIntent Give me the list of directions
+DirectionsIntent Tell me how to make it
+DirectionsIntent Tell me the instructions
+DirectionsIntent Tell me the directions
+DirectionsIntent Tell me the list of directions
+DirectionsIntent Tell me the list of instructions
+DirectionsIntent Read me the instructions
+DirectionsIntent Read me the list of instructions
+DirectionsIntent Read me the directions
+DirectionsIntent Read me the recipe
+DirectionsIntent Read me the list of directions
+DirectionsIntent Directions please
+DirectionsIntent Instructions please
+DirectionsIntent Start
+DirectionsIntent Read recipe
+DirectionsIntent Read the recipe
+DirectionsIntent Start reading
+DirectionsIntent Start reading the recipe
+
+AMAZON.StartOverIntent Start again
+AMAZON.StartOverIntent Start again please
+AMAZON.StartOverIntent Please start again
+AMAZON.StartOverIntent Start over
+AMAZON.StartOverIntent Start over please
+AMAZON.StartOverIntent Please start over
+AMAZON.StartOverIntent Restart
+AMAZON.StartOverIntent Start from the beginning
+AMAZON.StartOverIntent Go back to the start
+AMAZON.StartOverIntent Go back to the beginning
+AMAZON.StartOverIntent Go back to the first step
+AMAZON.StartOverIntent Go back to the first ingredient
+
+AMAZON.StopIntent Exit
+AMAZON.StopIntent Quit
+AMAZON.StopIntent Main menu
+AMAZON.StopIntent Go to main menu
+AMAZON.StopIntent Go to the main menu

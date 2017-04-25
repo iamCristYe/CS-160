@@ -1,0 +1,109 @@
+{
+	"intents": [
+		{
+		"intent": "ExpiryIntent",
+		"slots": [
+			{
+				"name": "Item",
+				"type": "AMAZON.FOOD"
+			},
+			{
+				"name": "Number",
+				"type": "AMAZON.NUMBER"
+			},
+			{
+				"name": "Date",
+				"type": "AMAZON.DATE"
+			}
+		]
+		},
+		{
+		"intent": "AddItemIntent",
+		"slots": [
+			{
+				"name": "Item",
+				"type": "AMAZON.FOOD"
+			},
+			{
+				"name": "Quantity",
+				"type": "AMAZON.NUMBER"
+			},
+			{
+				"name": "Location",
+				"type": "SAMPLE_LOCATIONS"
+			}
+		]
+		},
+		{
+		"intent": "RemoveItemIntent",
+		"slots": [
+			{
+				"name": "Item",
+				"type": "AMAZON.FOOD"
+			},
+			{
+				"name": "Quantity",
+				"type": "AMAZON.NUMBER"
+			},
+			{
+				"name": "Location",
+				"type": "SAMPLE_LOCATIONS"
+			}
+		]
+		},
+		{
+		"intent": "SpecifyIntent",
+		"slots": [
+			{
+				"name": "Quantity",
+				"type": "AMAZON.NUMBER"
+			},
+			{
+				"name": "Location",
+				"type": "SAMPLE_LOCATIONS"
+			},
+			{
+				"name": "ExpirationDate",
+				"type": "AMAZON.DATE"
+			},
+			{
+				"name": "DaysUntilExpiry",
+				"type": "AMAZON.NUMBER"
+			}
+		]
+		},
+		{
+		"intent": "FindRecipeIntent",
+		"slots": [
+			{
+				"name": "Item",
+				"type": "AMAZON.FOOD"
+			}
+		]
+		}
+		{
+		"intent": "AMAZON.HelpIntent"
+		},
+		{
+		"intent": "PrevIntent"
+		},
+		{
+		"intent": "NextIntent"
+		},		
+		{
+		"intent": "IngredientsIntent"
+		},
+		{
+		"intent": "DirectionsIntent"
+		},
+		{
+		"intent": "AMAZON.StartOverIntent"
+		},
+		{
+		"intent": "AMAZON.RepeatIntent"
+		},
+		{
+		"intent": "AMAZON.StopIntent"
+		}
+	]
+}
