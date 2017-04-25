@@ -15,6 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script>
     function display(data, sortingMode) {
+      $('.items').remove();
       switch (sortingMode) {
         case "foodNameA":
           data.sort(function (a, b) {
@@ -76,14 +77,67 @@
           break;
       }
       data.forEach(function (item) {
-        $('<tr><td>' + item.foodName + '</td><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + item.total + '</td>').appendTo(".itemTable");
+        $('<tr class="items"><td>' + item.foodName + '</td><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + item.total + '</td>').appendTo(".itemTable");
       });
     }
 
     $(document).ready(function () {
-      $.get("https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge", function (data, status) {
-        display(data.Items, "foodNameA");
+      var data;
+      var sortingMode = "foodNameA";
+      $.get("https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge", function (result, status) {
+        data = result.Items;
+        display(data, "foodNameA");
       });
+      $('#nameB').click(function name(params) {
+        if (sortingMode == "foodNameA") {
+          display(data, "foodNameD");
+          sortingMode = "foodNameD";
+        }
+        else {
+          display(data, "foodNameA");
+          sortingMode = "foodNameA";
+        }
+      })
+      $('#quantityB').click(function name(params) {
+        if (sortingMode == "quantityA") {
+          display(data, "quantityD");
+          sortingMode = "quantityD";
+        }
+        else {
+          display(data, "quantityA");
+          sortingMode = "quantityA";
+        }
+      })
+      $('#expirationB').click(function name(params) {
+        if (sortingMode == "expirationDateA") {
+          display(data, "expirationDateD");
+          sortingMode = "expirationDateD";
+        }
+        else {
+          display(data, "expirationDateA");
+          sortingMode = "expirationDateA";
+        }
+      })
+      $('#locationB').click(function name(params) {
+        if (sortingMode == "locationA") {
+          display(data, "locationD");
+          sortingMode = "locationD";
+        }
+        else {
+          display(data, "locationA");
+          sortingMode = "locationA";
+        }
+      })
+      $('#totalB').click(function name(params) {
+        if (sortingMode == "totalA") {
+          display(data, "totalD");
+          sortingMode = "totalD";
+        }
+        else {
+          display(data, "totalA");
+          sortingMode = "totalA";
+        }
+      })
     });
   </script>
 </head>
@@ -148,11 +202,11 @@
     <section style="padding-top: 50px;">
       <table class="itemTable">
         <tr>
-          <th>Name</th>
-          <th>Quantity</th>
-          <th>Expiration</th>
-          <th>Location</th>
-          <th>Total</th>
+          <th id='nameB'>Name</th>
+          <th id='quantityB'>Quantity</th>
+          <th id='expirationB'>Expiration</th>
+          <th id='locationB'>Location</th>
+          <th id='totalB'>Total</th>
         </tr>
 
       </table>
