@@ -90,39 +90,15 @@
           min: 0,
           max: false,
           step: 1,
-          onMin: function () {
-            $.ajax({
-              url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
-              type: "POST",
-              data: JSON.stringify({
-                "type": "DELETE",
-                "data": {
-                  "TableName": "magicFridge",
-                  "Key": {
-                    "itemId": item.itemId,
-                    "userId": "Isaiah"
-                  }
-                }
-              }),
-              success: function (data) {
-                location.reload();
-              },
-              error: function (xhr, ajaxOptions, thrownError) {
-                alert("Error");
-              }
-            });
-          },
           afterIncrease: function () {
             $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
               "type": "PUT",
               "data": {
                 "TableName": "magicFridge",
                 "Key": {
-                  "itemId": item.itemId
+                  "itemId": item.itemId,
+                  "quantity": item.quantity + 1
                 },
-                //There are different expressions you can add to update expression. SET adds/updates attributes to an item
-                "quantity": item.quantity + 1,
-                "ReturnValues": "UPDATED_NEW"
               }
             }),
               function (data, status) {
@@ -138,11 +114,15 @@
                 "data": {
                   "TableName": "magicFridge",
                   "Key": {
-                    "itemId": item.itemId
+                    "itemId": item.itemId,
                   },
-                  //There are different expressions you can add to update expression. SET adds/updates attributes to an item
-                  "quantity": item.quantity - 1,
-                  "ReturnValues": "UPDATED_NEW"
+                  "UpdateExpression": "set #quantity=:quantity",
+                  "ExpressionAttributeNames": {
+                    "#quantity": item.quantity - 1
+                  },
+                  "ExpressionAttributeValues": {
+                    ":quantity": item.quantity - 1
+                  },
                 }
               }),
                 function (data, status) {
@@ -150,6 +130,28 @@
                 }).fail(function (res) {
                   console.log(res)
                 })
+            }
+            if (item.quantity == 1) {
+              $.ajax({
+                url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+                type: "POST",
+                data: JSON.stringify({
+                  "type": "DELETE",
+                  "data": {
+                    "TableName": "magicFridge",
+                    "Key": {
+                      "itemId": item.itemId,
+                      "userId": "Isaiah"
+                    }
+                  }
+                }),
+                success: function (data) {
+                  location.reload();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  alert("Error");
+                }
+              });
             }
           },
 
@@ -277,7 +279,7 @@
     </header>
     <!-- Hero Section -->
     <section style="padding-top: 30px;">
-    <p> You can sort the items by clicking on the top column! :) </p>
+      <p> You can sort the items by clicking on the top column! :) </p>
       <table class="itemTable">
         <tr>
           <th id='nameB'>Name</th>
