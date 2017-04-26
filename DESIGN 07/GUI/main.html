@@ -12,7 +12,9 @@
     var __adobewebfontsappname__ = "dreamweaver"
   </script>
   <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
+  <link rel='stylesheet' href='css/dpNumberPicker-2.x-skin.grey-min.css' />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src='js/dpNumberPicker-2.x-min.js'></script>
   <script>
     function display(data, sortingMode) {
       $('.items').remove();
@@ -82,7 +84,77 @@
         result.forEach(function (item) {
           total += Number(item.quantity);
         });
-        $('<tr class="items" onclick=javascript:window.location="item.html#' + item.foodName + '"><td>' + item.foodName + '</td><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + total + '</td>').appendTo(".itemTable");
+        $('<tr class="items"><td onclick=javascript:window.location="item.html#' + item.foodName + '">' + item.foodName + '</td><td>' + "<div id='" + item.itemId + "'></div>" + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + total + '</td>').appendTo(".itemTable");
+        dpUI.numberPicker("#" + item.itemId, {
+          start: item.quantity,
+          min: 0,
+          max: false,
+          step: 1,
+          onMin: function () {
+            $.ajax({
+              url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+              type: "POST",
+              data: JSON.stringify({
+                "type": "DELETE",
+                "data": {
+                  "TableName": "magicFridge",
+                  "Key": {
+                    "itemId": item.itemId,
+                    "userId": "Isaiah"
+                  }
+                }
+              }),
+              success: function (data) {
+                location.reload();
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                alert("Error");
+              }
+            });
+          },
+          afterIncrease: function () {
+            $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+              "type": "PUT",
+              "data": {
+                "TableName": "magicFridge",
+                "Key": {
+                  "itemId": item.itemId
+                },
+                //There are different expressions you can add to update expression. SET adds/updates attributes to an item
+                "quantity": item.quantity + 1,
+                "ReturnValues": "UPDATED_NEW"
+              }
+            }),
+              function (data, status) {
+                location.reload();
+              }).fail(function (res) {
+                console.log(res)
+              })
+          },
+          afterDecrease: function () {
+            if (item.quantity != 1) {
+              $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+                "type": "PUT",
+                "data": {
+                  "TableName": "magicFridge",
+                  "Key": {
+                    "itemId": item.itemId
+                  },
+                  //There are different expressions you can add to update expression. SET adds/updates attributes to an item
+                  "quantity": item.quantity - 1,
+                  "ReturnValues": "UPDATED_NEW"
+                }
+              }),
+                function (data, status) {
+                  location.reload();
+                }).fail(function (res) {
+                  console.log(res)
+                })
+            }
+          },
+
+
+        });
       });
     }
 

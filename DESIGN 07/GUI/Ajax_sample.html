@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var theUrl = "[URL OF YOUR DYNAMODB API]"
+    $("#get_button").click(function(){
+	    $.get(theUrl, function(data, status){
+	        alert(JSON.stringify(data))
+	    });
+    });
+    $("#query_button").click(function(){
+        $.post(theUrl, JSON.stringify({
+            "type": "QUERY",
+            "data": {
+                "TableName": "movie_db",
+                //Condition for item
+                "FilterExpression": "#y = :y",
+                //Variable for attribute name (think of key). You have to preface the variables with #
+                "ExpressionAttributeNames": {
+                    "#y": "year",
+                },
+                //Variable for value to attribute. You have to preface the variables with :
+                "ExpressionAttributeValues": {
+                    ":y": 2016
+                }
+            }
+        }),
+        //success callback
+        function(data, status) {
+            alert(JSON.stringify(data))
+        }).fail(function(res) {
+            console.log(res)
+        })
+    })
+
+
+    $("#post_button").click(function(){
+    	$.post(theUrl, JSON.stringify({
+            "type": "POST", 
+            "data": {
+                "TableName": "movie_db",
+                //New item information to be posted 
+                "Item": {
+                    "name":"Zootopia", 
+                    "year": 2016}}}), 
+        function(data, status){
+    		alert(status);
+    	})
+    });
+    $("#put_button_add").click(function(){
+        $.post(theUrl, JSON.stringify({
+            "type": "PUT",
+            "data": {
+                "TableName": "movie_db",
+                //primary key (unique identifier of item)
+                "Key": {
+                    "name": "Moana"},
+                //There are different expressions you can add to update expression. SET adds/updates attributes to an item
+                "UpdateExpression": "set #y=:y",
+                "ExpressionAttributeNames": {
+                    "#y" : "year"
+                },
+                "ExpressionAttributeValues": {
+                    ":y" : 2016},
+                "ReturnValues": "UPDATED_NEW"
+                }}),
+        function(data, status){
+            alert(status);
+        }).fail(function(res) {
+            console.log(res)
+        })
+    })
+    $("#put_button_remove").click(function(){
+        $.post(theUrl, JSON.stringify({
+            "type": "PUT",
+            "data": {
+                "TableName": "movie_db",
+                "Key": {
+                    "name": "Moana"},
+                // Remove removes an attribute from an item
+                "UpdateExpression": "remove #y",
+                "ExpressionAttributeNames": {
+                    "#y" : "year"},
+                "ReturnValues": "UPDATED_NEW"
+                }}),
+        function(data, status){
+            alert(status);
+        }).fail(function(res) {
+            // add a fail callback to get/post to get an error response while debugging!
+            console.log(res)
+        })
+    })
+    $("#delete_button").click(function(){
+        $.post(theUrl, JSON.stringify({
+            "type": "DELETE",
+            "data": {
+                "TableName": "movie_db",
+                "Key": {
+                    "name": "Zootopia"
+                }
+            }
+        }),
+        function(data, status){
+            alert(status);
+        })
+    })
+});
+</script>
+</head>
+<body>
+
+<div class="get_requests">
+    GET Requests<br>
+    <button id="get_button">Send an HTTP GET request the entire database</button>
+</div>
+<br>
+<div class="post_requests">
+    POST Requests<br>
+    <button id="query_button">Send an HTTP POST request for querying a specific item</button>
+    <button id="post_button">Send an HTTP POST request to a page</button>
+    <button id="put_button_add">Send an HTTP PUT request to add an att</button>
+    <button id="put_button_remove">Send an HTTP PUT request to remove an att</button>
+    <button id="delete_button">Send an HTTP DELETE request to a page</button>
+</div>
+
+</body>
+</html>
