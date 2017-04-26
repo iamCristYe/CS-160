@@ -46,13 +46,108 @@
         result.forEach(function (item) {
           total += Number(item.quantity);
           temp = "'" + item.itemId + "'";
-          $('<tr class="items"><td>' + item.quantity + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + "<div id='" + item.itemId + "'></div>" + '<button type="submit" style="float: right;"><a onclick="javascrpit:deleteItem(' + temp + ');"><img src="images/button/Remove-icon.png" height="25" /></a></button></td></tr>').appendTo(".itemTable");
-          $(document).ready(function () {
-            dpUI.numberPicker("#" + item.itemId, {
-              min: 0,
-              max: item.quantity,
-              step: 1,
-            });
+          $('<tr class="items"><td>' + "<div id='" + item.itemId + "'></div>" + '</td><td>' + item.expirationDate + '</td><td>' + item.location + '</td><td>' + '<button type="submit" style="float: right;"><a onclick="javascrpit:deleteItem(' + temp + ');"><img src="images/button/Remove-icon.png" height="25" /></a></button></td></tr>').appendTo(".itemTable");
+          dpUI.numberPicker("#" + item.itemId, {
+            start: item.quantity,
+            min: 0,
+            max: false,
+            step: 1,
+            afterIncrease: function () {
+              document.getElementsByTagName("body")[0].setAttribute("style", "display:none");
+              $.ajax({
+                url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+                type: "POST",
+                data: JSON.stringify({
+                  "type": "DELETE",
+                  "data": {
+                    "TableName": "magicFridge",
+                    "Key": {
+                      "itemId": item.itemId,
+                      "userId": "Isaiah"
+                    }
+                  }
+                }),
+                success: function (data) {
+                  $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+                    "type": "POST",
+                    "data": {
+                      "TableName": "magicFridge",
+                      //New item information to be posted 
+                      "Item": {
+                        "location": item.location, "quantity": item.quantity + 1, "expirationDate": item.expirationDate, "foodName": item.foodName, "itemId": item.itemId, "userId": "Isaiah"
+                      }
+                    }
+                  }),
+                    function (data, status) {
+                      location.reload();
+                    })
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  alert("Error");
+                }
+              });
+            },
+            afterDecrease: function () {
+              document.getElementsByTagName("body")[0].setAttribute("style", "display:none");
+              if (item.quantity != 1) {
+                $.ajax({
+                  url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+                  type: "POST",
+                  data: JSON.stringify({
+                    "type": "DELETE",
+                    "data": {
+                      "TableName": "magicFridge",
+                      "Key": {
+                        "itemId": item.itemId,
+                        "userId": "Isaiah"
+                      }
+                    }
+                  }),
+                  success: function (data) {
+                    $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+                      "type": "POST",
+                      "data": {
+                        "TableName": "magicFridge",
+                        //New item information to be posted 
+                        "Item": {
+                          "location": item.location, "quantity": item.quantity - 1, "expirationDate": item.expirationDate, "foodName": item.foodName, "itemId": item.itemId, "userId": "Isaiah"
+                        }
+                      }
+                    }),
+                      function (data, status) {
+                        location.reload();
+                      })
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Error");
+                  }
+                });
+              }
+              if (item.quantity == 1) {
+                $.ajax({
+                  url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+                  type: "POST",
+                  data: JSON.stringify({
+                    "type": "DELETE",
+                    "data": {
+                      "TableName": "magicFridge",
+                      "Key": {
+                        "itemId": item.itemId,
+                        "userId": "Isaiah"
+                      }
+                    }
+                  }),
+                  success: function (data) {
+                    location.reload();
+                  },
+                  error: function (xhr, ajaxOptions, thrownError) {
+                    alert("Error");
+                  }
+                });
+              }
+            },
+
+
           });
         });
         $('#Total').html(total);

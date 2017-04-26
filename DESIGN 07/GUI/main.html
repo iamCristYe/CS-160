@@ -91,6 +91,7 @@
           max: false,
           step: 1,
           afterIncrease: function () {
+            document.getElementsByTagName("body")[0].setAttribute("style", "display:none");
             $.ajax({
               url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
               type: "POST",
@@ -125,6 +126,7 @@
             });
           },
           afterDecrease: function () {
+            document.getElementsByTagName("body")[0].setAttribute("style", "display:none");
             if (item.quantity != 1) {
               $.ajax({
                 url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
@@ -307,7 +309,7 @@
     </header>
     <!-- Hero Section -->
     <section style="padding-top: 30px;">
-      <p> You can sort the items by clicking on the top column! :) </p>
+      <p> You can sort the items by clicking on the items in the top row! :) </p>
       <table class="itemTable">
         <tr>
           <th id='nameB'>Name</th>
