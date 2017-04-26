@@ -91,45 +91,73 @@
           max: false,
           step: 1,
           afterIncrease: function () {
-            $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
-              "type": "PUT",
-              "data": {
-                "TableName": "magicFridge",
-                "Key": {
-                  "itemId": item.itemId,
-                  "quantity": item.quantity + 1
-                },
-              }
-            }),
-              function (data, status) {
-                location.reload();
-              }).fail(function (res) {
-                console.log(res)
-              })
-          },
-          afterDecrease: function () {
-            if (item.quantity != 1) {
-              $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
-                "type": "PUT",
+            $.ajax({
+              url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+              type: "POST",
+              data: JSON.stringify({
+                "type": "DELETE",
                 "data": {
                   "TableName": "magicFridge",
                   "Key": {
                     "itemId": item.itemId,
-                  },
-                  "UpdateExpression": "set #quantity=:quantity",
-                  "ExpressionAttributeNames": {
-                    "#quantity": item.quantity - 1
-                  },
-                  "ExpressionAttributeValues": {
-                    ":quantity": item.quantity - 1
-                  },
+                    "userId": "Isaiah"
+                  }
                 }
               }),
-                function (data, status) {
-                  location.reload();
-                }).fail(function (res) {
-                  console.log(res)
-                })
+              success: function (data) {
+                $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+                  "type": "POST",
+                  "data": {
+                    "TableName": "magicFridge",
+                    //New item information to be posted 
+                    "Item": {
+                      "location": item.location, "quantity": item.quantity + 1, "expirationDate": item.expirationDate, "foodName": item.foodName, "itemId": item.itemId, "userId": "Isaiah"
+                    }
+                  }
+                }),
+                  function (data, status) {
+                    location.reload();
+                  })
+              },
+              error: function (xhr, ajaxOptions, thrownError) {
+                alert("Error");
+              }
+            });
+          },
+          afterDecrease: function () {
+            if (item.quantity != 1) {
+              $.ajax({
+                url: 'https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge',
+                type: "POST",
+                data: JSON.stringify({
+                  "type": "DELETE",
+                  "data": {
+                    "TableName": "magicFridge",
+                    "Key": {
+                      "itemId": item.itemId,
+                      "userId": "Isaiah"
+                    }
+                  }
+                }),
+                success: function (data) {
+                  $.post('https://aq6q3i5xv0.execute-api.us-east-1.amazonaws.com/prod/fridgeUpdate?TableName=magicFridge', JSON.stringify({
+                    "type": "POST",
+                    "data": {
+                      "TableName": "magicFridge",
+                      //New item information to be posted 
+                      "Item": {
+                        "location": item.location, "quantity": item.quantity - 1, "expirationDate": item.expirationDate, "foodName": item.foodName, "itemId": item.itemId, "userId": "Isaiah"
+                      }
+                    }
+                  }),
+                    function (data, status) {
+                      location.reload();
+                    })
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                  alert("Error");
+                }
+              });
             }
             if (item.quantity == 1) {
               $.ajax({
