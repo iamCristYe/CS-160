@@ -275,7 +275,7 @@
     
     tr {
       background-color: lightgrey;
-      color: grey;
+      color: black;
     }
     
     tr:hover {
@@ -285,7 +285,6 @@
     
     button:hover {
       opacity: 0.3;
-      padding: 10px;
     }
   </style>
   <!-- Main Container -->
@@ -307,11 +306,16 @@
     </header>
     <!-- Hero Section -->
     <section style="padding-top: 30px;">
-      <p> You can sort the items by clicking on the items in the top row! You can also click on the food name to view item details.
-        😊😊😊 </p>
       <table class="itemTable">
         <tr>
-          <th id='nameB'>Name</th>
+          <th id='nameB'>Name
+          <button type="submit" style="background-color:transparent; 
+                   border-color:transparent;
+                   float: right;">
+          <a href="">
+            <img src="images/button/Down-icon.png" height="15"/>
+          </a>
+          </button></th>
           <th id='quantityB'>Quantity</th>
           <th id='expirationB'>Expiration</th>
           <th id='locationB'>Location</th>
