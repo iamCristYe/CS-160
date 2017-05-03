@@ -1,0 +1,37 @@
+{
+	"intents": [
+		{
+		"intent": "SearchIntent",
+		"slots": [
+			{
+				"name": "Recipe",
+				"type": "AMAZON.FOOD"
+			}
+		]
+		},
+		{
+		"intent": "AMAZON.HelpIntent"
+		},
+		{
+		"intent": "PrevIntent"
+		},
+		{
+		"intent": "NextIntent"
+		},		
+		{
+		"intent": "IngredientsIntent"
+		},
+		{
+		"intent": "DirectionsIntent"
+		},
+		{
+		"intent": "AMAZON.StartOverIntent"
+		},
+		{
+		"intent": "AMAZON.RepeatIntent"
+		},
+		{
+		"intent": "AMAZON.StopIntent"
+		}
+	]
+}
