@@ -1,109 +1,526 @@
 {
-	"intents": [
-		{
-		"intent": "ExpiryIntent",
-		"slots": [
-			{
-				"name": "Item",
-				"type": "AMAZON.FOOD"
-			},
-			{
-				"name": "Number",
-				"type": "AMAZON.NUMBER"
-			},
-			{
-				"name": "Date",
-				"type": "AMAZON.DATE"
-			}
-		]
-		},
-		{
-		"intent": "AddItemIntent",
-		"slots": [
-			{
-				"name": "Item",
-				"type": "AMAZON.FOOD"
-			},
-			{
-				"name": "Quantity",
-				"type": "AMAZON.NUMBER"
-			},
-			{
-				"name": "Location",
-				"type": "SAMPLE_LOCATIONS"
-			}
-		]
-		},
-		{
-		"intent": "RemoveItemIntent",
-		"slots": [
-			{
-				"name": "Item",
-				"type": "AMAZON.FOOD"
-			},
-			{
-				"name": "Quantity",
-				"type": "AMAZON.NUMBER"
-			},
-			{
-				"name": "Location",
-				"type": "SAMPLE_LOCATIONS"
-			}
-		]
-		},
-		{
-		"intent": "SpecifyIntent",
-		"slots": [
-			{
-				"name": "Quantity",
-				"type": "AMAZON.NUMBER"
-			},
-			{
-				"name": "Location",
-				"type": "SAMPLE_LOCATIONS"
-			},
-			{
-				"name": "ExpirationDate",
-				"type": "AMAZON.DATE"
-			},
-			{
-				"name": "DaysUntilExpiry",
-				"type": "AMAZON.NUMBER"
-			}
-		]
-		},
-		{
-		"intent": "FindRecipeIntent",
-		"slots": [
-			{
-				"name": "Item",
-				"type": "AMAZON.FOOD"
-			}
-		]
-		}
-		{
-		"intent": "AMAZON.HelpIntent"
-		},
-		{
-		"intent": "PrevIntent"
-		},
-		{
-		"intent": "NextIntent"
-		},		
-		{
-		"intent": "IngredientsIntent"
-		},
-		{
-		"intent": "DirectionsIntent"
-		},
-		{
-		"intent": "AMAZON.StartOverIntent"
-		},
-		{
-		"intent": "AMAZON.RepeatIntent"
-		},
-		{
-		"intent": "AMAZON.StopIntent"
-		}
-	]
+  "intents": [
+    {
+      "name": "AddItemIntent",
+      "samples": [
+        "Add {Quantity} {Item} to the fridge",
+        "Put {Quantity} {Item} in the fridge",
+        "Add {Quantity} {Item}",
+        "Add {Item}",
+        "Add {Item} to the fridge",
+        "Put {Item} in the fridge",
+        "Place {Quantity} {Item} in the fridge",
+        "Place {Quantity} {Item} on the fridge",
+        "Put {Quantity} {Item} on the fridge",
+        "Add {Quantity} {Item} that expires on {Date} ",
+        "Add {Quantity} {Item} that expire {Date}",
+        "Add {Quantity} {Item} that expires {Date}",
+        "Add {Quantity} {Item} that expire on {Date} "
+      ],
+      "slots": [
+        {
+          "name": "Item",
+          "type": "AMAZON.Food",
+          "samples": [
+            "{Item} "
+          ]
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER",
+          "samples": [
+            "{Quantity} "
+          ]
+        },
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE",
+          "samples": [
+            "{Date} "
+          ]
+        }
+      ]
+    },
+    {
+      "name": "AMAZON.CancelIntent",
+      "samples": [
+        "cancel"
+      ]
+    },
+    {
+      "name": "AMAZON.HelpIntent",
+      "samples": [
+        "What can I say",
+        "What commands are there",
+        "Help",
+        "Help me",
+        "I need help",
+        "I want help",
+        "How do I use this app",
+        "Sample phrases",
+        "Can you give an example"
+      ]
+    },
+    {
+      "name": "AMAZON.RepeatIntent",
+      "samples": [
+        "repeat that",
+        "can you repeat that",
+        "can you say that again",
+        "say that again",
+        "what was that",
+        "come again"
+      ]
+    },
+    {
+      "name": "AMAZON.StartOverIntent",
+      "samples": [
+        "Start again",
+        "Start again please",
+        "Please start again",
+        "Start over",
+        "Start over please",
+        "Please start over",
+        "Restart",
+        "Start from the beginning",
+        "Go back to the start",
+        "Go back to the beginning",
+        "Go back to the first step",
+        "Go back to the first ingredient"
+      ]
+    },
+    {
+      "name": "AMAZON.StopIntent",
+      "samples": [
+        "Exit",
+        "Quit",
+        "Main menu",
+        "Go to main menu",
+        "Go to the main menu",
+        "close fridge",
+        "close magic fridge"
+      ]
+    },
+    {
+      "name": "DirectionsIntent",
+      "samples": [
+        "Directions",
+        "Give directions",
+        "Give me the directions",
+        "Give me the list of directions",
+        "Tell me how to make it",
+        "Tell me the instructions",
+        "Tell me the directions",
+        "Tell me the list of directions",
+        "Tell me the list of instructions",
+        "Read me the instructions",
+        "Read me the list of instructions",
+        "Read me the directions",
+        "Read me the recipe",
+        "Read me the list of directions",
+        "Directions please",
+        "Instructions please",
+        "Start",
+        "Read recipe",
+        "Read the recipe",
+        "Start reading",
+        "Start reading the recipe"
+      ],
+      "slots": []
+    },
+    {
+      "name": "ExpiryIntent",
+      "samples": [
+        "What expires soon",
+        "What will expire soon",
+        "Tell me what expires soon",
+        "Tell me what will expire soon",
+        "What food expires soon",
+        "What food will expire soon",
+        "Tell me what food expires soon",
+        "Tell me what food will expire soon",
+        "What goes bad soon",
+        "What will go bad soon",
+        "What food goes bad soon",
+        "What food will go bad soon",
+        "Tell me what will go bad soon",
+        "Tell me what food will go bad soon",
+        "What expires",
+        "What is going bad soon",
+        "What is going bad",
+        "What is expiring",
+        "When are my {Item} expiring",
+        "When do my {Item} expire",
+        "When will my {Item} expire",
+        "When will my {Item} go bad",
+        "When do my {Item} go bad",
+        "When are my {Item} going bad",
+        "What day do my {Item} expire",
+        "How many days until my {Item} expires",
+        "How long until my {Item} expire",
+        "What date do my {Item} next expire on",
+        "What is the next expiration date of my {Item}",
+        "What expires in {Number} days",
+        "What goes bad in {Number} days",
+        "What expires within {Number} days",
+        "What goes bad within {Number} days",
+        "What expires by {Date}",
+        "What goes bad by {Date}"
+      ],
+      "slots": [
+        {
+          "name": "Item",
+          "type": "AMAZON.Food",
+          "samples": []
+        },
+        {
+          "name": "Number",
+          "type": "AMAZON.NUMBER",
+          "samples": []
+        },
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "FindRecipeIntent",
+      "samples": [
+        "Find me a dish containing {Item}",
+        "Find me a dish made with {Item}",
+        "Find me a dish that contains {Item}",
+        "Find me a dish that uses {Item}",
+        "Find me a dish using {Item}",
+        "Find me a dish with {Item}",
+        "Find me a meal containing {Item}",
+        "Find me a meal made with {Item}",
+        "Find me a meal that contains {Item}",
+        "Find me a meal that uses {Item}",
+        "Find me a meal using {Item}",
+        "Find me a meal with {Item}",
+        "Find me recipes containing {Item}",
+        "Find me recipes made with {Item}",
+        "Find me recipes that contain {Item}",
+        "Find me recipes that use {Item}",
+        "Find me recipes using {Item}",
+        "Find me recipes with {Item}",
+        "Tell me recipes containing {Item}",
+        "Tell me recipes made with {Item}",
+        "Tell me recipes that contain {Item}",
+        "Tell me recipes that use {Item}",
+        "Tell me recipes using {Item}",
+        "Tell me recipes with {Item}",
+        "Find me a dish",
+        "Find me a meal",
+        "Find me a recipe"
+      ],
+      "slots": [
+        {
+          "name": "Item",
+          "type": "AMAZON.Food",
+          "samples": [
+            "{Item}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "IngredientsIntent",
+      "samples": [
+        "Ingredients",
+        "Give ingredients",
+        "Give me the ingredients",
+        "Give me the list of ingredients",
+        "List of ingredients",
+        "Read me the ingredients",
+        "Tell me the ingredients",
+        "Read ingredients",
+        "Read me the list of ingredients",
+        "Ingredients please",
+        "What are the ingredients"
+      ],
+      "slots": []
+    },
+    {
+      "name": "NextIntent",
+      "samples": [
+        "Next",
+        "Next ingredient",
+        "Next step",
+        "Give me the next one",
+        "Give me the next ingredient",
+        "Give me the next step",
+        "Tell me the next one",
+        "Tell me the next ingredient",
+        "Tell me the next step",
+        "Go on",
+        "Keep reading",
+        "What's next",
+        "Keep going"
+      ],
+      "slots": []
+    },
+    {
+      "name": "PrevIntent",
+      "samples": [
+        "Previous",
+        "Previous ingredient",
+        "Previous step",
+        "Last step",
+        "Last ingredient",
+        "Repeat that",
+        "Repeat",
+        "Repeat that please",
+        "Please repeat that",
+        "What did you say",
+        "What did you just say",
+        "I didn't get that",
+        "I didn't qute get that"
+      ],
+      "slots": []
+    },
+    {
+      "name": "RemoveItemIntent",
+      "samples": [
+        "I ate {Item}",
+        "I ate {Item} from the fridge",
+        "I used {Item}",
+        "I used {Item} from the fridge",
+        "Remove {Item}",
+        "Remove {Item} from the fridge",
+        "Take out {Item}",
+        "Take out {Item} from the fridge",
+        "I ate {Quantity} {Item}",
+        "I ate {Quantity} {Item} from the fridge",
+        "I used {Quantity} {Item}",
+        "I used {Quantity} {Item} from the fridge",
+        "Remove {Quantity} {Item}",
+        "Remove {Quantity} {Item} from the fridge",
+        "Take out {Quantity} {Item}",
+        "Take out {Quantity} {Item} from the fridge"
+      ],
+      "slots": [
+        {
+          "name": "Item",
+          "type": "AMAZON.Food",
+          "samples": [
+            "{Item} "
+          ]
+        },
+        {
+          "name": "Quantity",
+          "type": "AMAZON.NUMBER",
+          "samples": [
+            "{Quantity} "
+          ]
+        }
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "Elicit.Intent-AddItemIntent.IntentSlot-Item",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What item are you storing?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-AddItemIntent.IntentSlot-Quantity",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "How many do you want to add"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-AddItemIntent.IntentSlot-Date",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "When will the food expire?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-FindRecipeIntent.IntentSlot-Item",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "what ingredient would you like to cook with"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-RemoveItemIntent.IntentSlot-Item",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What item are you using?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-RemoveItemIntent.IntentSlot-Quantity",
+      "promptVersion": "1.0",
+      "definitionVersion": "1.0",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "How many are you using"
+        },
+        {
+          "type": "PlainText",
+          "value": "how many do you want to remove"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "version": "1.0",
+    "intents": [
+      {
+        "name": "AddItemIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Item",
+            "type": "AMAZON.Food",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-AddItemIntent.IntentSlot-Item"
+            }
+          },
+          {
+            "name": "Quantity",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-AddItemIntent.IntentSlot-Quantity"
+            }
+          },
+          {
+            "name": "Date",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-AddItemIntent.IntentSlot-Date"
+            }
+          }
+        ]
+      },
+      {
+        "name": "DirectionsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "ExpiryIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Item",
+            "type": "AMAZON.Food",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "Number",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          },
+          {
+            "name": "Date",
+            "type": "AMAZON.DATE",
+            "elicitationRequired": false,
+            "confirmationRequired": false,
+            "prompts": {}
+          }
+        ]
+      },
+      {
+        "name": "FindRecipeIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Item",
+            "type": "AMAZON.Food",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-FindRecipeIntent.IntentSlot-Item"
+            }
+          }
+        ]
+      },
+      {
+        "name": "IngredientsIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "NextIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "PrevIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": []
+      },
+      {
+        "name": "RemoveItemIntent",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "Item",
+            "type": "AMAZON.Food",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-RemoveItemIntent.IntentSlot-Item"
+            }
+          },
+          {
+            "name": "Quantity",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicit": "Elicit.Intent-RemoveItemIntent.IntentSlot-Quantity"
+            }
+          }
+        ]
+      }
+    ]
+  }
 }
